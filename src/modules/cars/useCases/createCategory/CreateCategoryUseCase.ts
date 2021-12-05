@@ -2,12 +2,14 @@ import { ICategoriesRepository } from "../../repositories/ICategoriesRepository"
 
 interface ICreateCategoryRequest {
   name: string;
+
   description: string;
 }
 
 class CreateCategoryUseCase {
   // eslint-disable-next-line prettier/prettier
-  constructor(private categoriesRepository: ICategoriesRepository) { }
+
+  constructor(private categoriesRepository: ICategoriesRepository) {}
 
   execute({ name, description }: ICreateCategoryRequest): void {
     const categoryAlreadyExists = this.categoriesRepository.findByName(name);
@@ -18,6 +20,7 @@ class CreateCategoryUseCase {
 
     this.categoriesRepository.create({
       description,
+
       name,
     });
   }

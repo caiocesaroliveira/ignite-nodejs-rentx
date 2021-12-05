@@ -2,12 +2,14 @@ import { ISpecificationsRepository } from "../../repositories/ISpecificationsRep
 
 interface ICreateSpecificationRequest {
   name: string;
+
   description: string;
 }
 
 class CreateSpecificationUseCase {
   // eslint-disable-next-line prettier/prettier
-  constructor(private specificationsRepository: ISpecificationsRepository) { }
+
+  constructor(private specificationsRepository: ISpecificationsRepository) {}
 
   execute({ name, description }: ICreateSpecificationRequest): void {
     const SpecificationAlreadyExists =
@@ -19,6 +21,7 @@ class CreateSpecificationUseCase {
 
     this.specificationsRepository.create({
       description,
+
       name,
     });
   }
