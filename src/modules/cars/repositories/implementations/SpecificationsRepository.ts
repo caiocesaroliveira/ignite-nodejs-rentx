@@ -11,7 +11,7 @@ class SpecificationsRepository implements ISpecificationsRepository {
     this.specifications = [];
   }
 
-  create({ name, description }: ICreateSpecificationDTO): void {
+  async create({ name, description }: ICreateSpecificationDTO): Promise<void> {
     const specification = new Specification();
 
     Object.assign(specification, {
@@ -25,11 +25,11 @@ class SpecificationsRepository implements ISpecificationsRepository {
     this.specifications.push(specification);
   }
 
-  list(): Specification[] {
+  async list(): Promise<Specification[]> {
     return this.specifications;
   }
 
-  findByName(name: string): Specification {
+  async findByName(name: string): Promise<Specification> {
     const category = this.specifications.find(
       (specification) => specification.name === name
     );
