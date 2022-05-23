@@ -4,7 +4,6 @@ import { ISpecificationsRepository } from "../../repositories/ISpecificationsRep
 
 interface ICreateSpecificationRequest {
   name: string;
-
   description: string;
 }
 
@@ -19,16 +18,15 @@ class CreateSpecificationUseCase {
     name,
     description,
   }: ICreateSpecificationRequest): Promise<void> {
-    const SpecificationAlreadyExists =
+    const specificationAlreadyExists =
       await this.specificationsRepository.findByName(name);
 
-    if (SpecificationAlreadyExists) {
+    if (specificationAlreadyExists) {
       throw new Error("Specification already exists!");
     }
 
     await this.specificationsRepository.create({
       description,
-
       name,
     });
   }
